@@ -5,6 +5,8 @@ from django.shortcuts import render
 
 from .models import Acc
 
+from forms import FormAcc
+
 def index(request):
 	accList = Acc.objects.all()
 	context = {'accList': accList}
@@ -18,5 +20,5 @@ def adiciona(request):
 			return render(request, 'salvo.html', {})
 		return render(request, 'adiciona.html', {'form': form})
 	else:
-		form = Acc()
+		form = FormAcc()
 		return render(request, 'adiciona.html', {'form': form})

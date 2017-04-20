@@ -1,11 +1,15 @@
-{% block corpo %}
-
 <h1>Registro De Accs</h1>
 
-{% for object in accList %}
+<a href="/adiciona/">Adicionar item</a>
 
-<li>{{object.titulo}}</li>
-
-{% endfor %}
-
-{% endblock %}
+<ul>
+	{% for item in accList %}
+		<li>
+			<a href="/item/{{item.id}}/">
+				{{item.titulo}} - {{item.aluno}} - {{item.horas}}
+			</a>
+		</li>
+	{% empty %}
+		<li>Sem itens na lista</li>
+	{% endfor %}
+</ul>
