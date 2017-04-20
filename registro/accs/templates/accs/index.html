@@ -4,7 +4,12 @@
 
 {% for object in accList %}
 
-<li>{{object.titulo}}</li>
+<li>
+	<a href="">Adicionar</a>
+</li>
+
+{% empty %}
+<p>Lista vazia</p>
 
 {% endfor %}
 

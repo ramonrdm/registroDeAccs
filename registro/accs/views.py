@@ -6,6 +6,17 @@ from django.shortcuts import render
 from .models import Acc
 
 def index(request):
-	accList = Acc.objects
+	accList = Acc.objects.all()
 	context = {'accList': accList}
-	return render(request, 'accs/index.html', context)
+	return render(request, 'index.html', context)
+
+def adiciona(request):
+	if request.method == 'POST':
+		form = Acc(request.POST, request.FILES)
+		if form.is_valid():
+			form.save()
+			return render(request, 'salvo.html', {})
+		return render(request, 'adiciona.html', {'form': form})
+	else:
+		form = Acc()
+		return render(request, 'adiciona.html', {'form': form})
