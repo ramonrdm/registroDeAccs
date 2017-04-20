@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Acc
 
@@ -14,7 +14,7 @@ def index(request):
 
 def adiciona(request):
 	if request.method == 'POST':
-		form = Acc(request.POST, request.FILES)
+		form = FormAcc(request.POST)
 		if form.is_valid():
 			form.save()
 			return render(request, 'salvo.html', {})
@@ -22,3 +22,15 @@ def adiciona(request):
 	else:
 		form = FormAcc()
 		return render(request, 'adiciona.html', {'form': form})
+
+def item(request, item_id):
+	item = get_object_or_404(Acc, id=item_id)
+	if request.method == 'POST':
+		form = FormAcc(request.POST, instance = item)
+		if form.is_valid():
+			form.save()
+			return render(request, 'salvo.html', {})
+		return render(request, 'item.html', {'form': form})
+	else:
+		form = FormAcc(instance=item)
+		return render(request, 'item.html', {'form': form})
