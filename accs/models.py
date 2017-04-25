@@ -16,7 +16,7 @@ class Acc(models.Model):
 	responsavel = models.CharField(max_length=200)
 	relatorio = models.TextField()
 	arquivo_anexado = models.FileField(default=None, blank=True)
-	link_externo = models.CharField(max_length=200, default=None)
+	link_externo = models.CharField(max_length=200, blank=True)
 
 	ensino_a_distancia = 'EaD'
 	tipo_atividade_choices = (
@@ -25,14 +25,13 @@ class Acc(models.Model):
 	)
 	tipo_atividade = models.CharField(max_length=200, choices=tipo_atividade_choices, default=ensino_a_distancia)
 	
-	"""
 	ISSN = 'ISSN'
 	ISBN = 'ISBN'
 
-	codigo_publicacao_choices = (
+	codigo_de_publicacao_choices = (
 		('ISSN', 'ISSN'),
 		('ISBN', 'ISBN')
 	)
-	codigo_publicacao_tipo = models.CharField(max_length=200, choices=codigo_publicacao_choices, default=ISSN)
-	codigo_publicacao_numero = models.CharField(max_length=200, default=None)
-	"""
+	codigo_de_publicacao_tipo = models.CharField(max_length=200, choices=codigo_de_publicacao_choices, default=ISSN)
+	codigo_de_publicacao = models.CharField(max_length=200)
+	
