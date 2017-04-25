@@ -5,12 +5,23 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import Acc
 
-from forms import FormAcc
+from forms import FormAcc, FormSearch
 
 def index(request):
-	accList = Acc.objects.all()
-	context = {'accList': accList}
-	return render(request, 'index.html', context)
+	if request.method == 'POST':
+		form = FormSearch(request.POST)
+		#if form.is_valid():
+		dados = form.data
+		busca = dados['busca']
+		resultado = Acc.objects.filter(aluno=busca)
+		if(len(resultado) == 0):
+			resultado = Acc.objects.filter(matricula=busca)
+		context = {"itens":resultado,"form":FormSearch()}
+		return render(request, 'index.html', context)
+	else:
+		resultado = []
+		context = {"itens":resultado,"form":FormSearch()}
+		return render(request, 'index.html', context)
 
 def adiciona(request):
 	if request.method == 'POST':

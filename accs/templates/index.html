@@ -1,17 +1,17 @@
-<h1>Registro De Accs</h1>
+<h1>Pesquisa de atividades</h1>
 
-<a href="/adiciona/">Adicionar item</a>
+<form method="POST">
+	{{form.as_p}}
+	<button type="submit">Pesquisar</button>
+</form>
 
 <ul>
-	{% for item in accList %}
+	{% for item in itens %}
 		<li>
-			{% load static %}
-			<a href="/delete/{{item.id}}"><img src="{% static "accs/lixeira.png" %}" alt="lixeira"></a>
-			<a href="/item/{{item.id}}/">
-				{{item.titulo}} - {{item.aluno}} - {{item.carga_horaria}} horas
-			</a>
+			{{item.titulo}} - {{item.aluno}} - {{item.matricula}} 
 		</li>
 	{% empty %}
-		<li>Sem itens na lista</li>
+		<li>0 itens</li>
 	{% endfor %}
 </ul>
+
