@@ -34,3 +34,8 @@ def item(request, item_id):
 	else:
 		form = FormAcc(instance=item)
 		return render(request, 'item.html', {'form': form})
+
+def delete(request, item_id):
+	item = get_object_or_404(Acc, id=item_id)
+	item.delete()
+	return render(request, 'delete.html')

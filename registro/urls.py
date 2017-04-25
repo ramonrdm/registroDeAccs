@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^adiciona/$', views.adiciona, name='adiciona'),
     url(r'^item/(?P<item_id>\d+)/$', views.item, name='item'),
+    url(r'^delete/(?P<item_id>\d+)/$', views.delete, name='delete'),
 ]

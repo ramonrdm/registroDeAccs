@@ -5,6 +5,8 @@
 <ul>
 	{% for item in accList %}
 		<li>
+			{% load static %}
+			<a href="/delete/{{item.id}}"><img src="{% static "accs/lixeira.png" %}" alt="lixeira"></a>
 			<a href="/item/{{item.id}}/">
 				{{item.titulo}} - {{item.aluno}} - {{item.carga_horaria}} horas
 			</a>
