@@ -13,7 +13,7 @@ def index(request):
 		#if form.is_valid():
 		dados = form.data
 		busca = dados['busca']
-		resultado = Acc.objects.filter(aluno=busca)
+		resultado = Acc.objects.filter(aluno.nome = busca)
 		if(len(resultado) == 0):
 			resultado = Acc.objects.filter(matricula=busca)
 		context = {"itens":resultado,"form":FormSearch()}
