@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.shortcuts import render, get_object_or_404
-
-from .models import Acc
-
+from .models import Acc, Aluno
 from forms import FormAcc, FormSearch
+from django.core.exceptions import ObjectDoesNotExist
 
 def index(request):
 	if request.method == 'POST':
@@ -13,9 +11,15 @@ def index(request):
 		#if form.is_valid():
 		dados = form.data
 		busca = dados['busca']
-		resultado = Acc.objects.filter(aluno.nome = busca)
+		try:
+			resultado = Acc.objects.filter(aluno = Aluno.objects.get(nome__icontains=busca))
+		except ObjectDoesNotExist:
+			resultado = []
 		if(len(resultado) == 0):
-			resultado = Acc.objects.filter(matricula=busca)
+			try:
+				resultado = Acc.objects.filter(aluno=Aluno.objects.get(matricula__icontains = busca))
+			except BaseException:
+				resultado = []
 		context = {"itens":resultado,"form":FormSearch()}
 		return render(request, 'index.html', context)
 	else:
