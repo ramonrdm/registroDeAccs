@@ -1,9 +1,13 @@
+<link href="index.css" rel="stylesheet" type="text/css">
+
 <h1>Pesquisa de atividades</h1>
 
 <form method="POST">
-	{% csrf_token %}
-	{{form.as_p}}
-	<button type="submit">Pesquisar</button>
+	<p>
+		{% csrf_token %}
+		{{form.as_p}} 
+		<button type="submit">Pesquisar</button>
+	</p>
 </form>
 
 <ul>
