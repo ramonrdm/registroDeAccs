@@ -9,10 +9,11 @@
 <ul>
 	{% for item in itens %}
 		<li>
-			{{item.titulo}} - {{item.aluno}} - {{item.matricula}} 
+			Aluno(a): {{item.aluno.nome}} | Certificado: {{item.titulo}} | Matrícula: {{item.aluno.matricula}} 
 		</li>
 	{% empty %}
 		<li>0 itens</li>
 	{% endfor %}
 </ul>
+
 
