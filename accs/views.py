@@ -40,15 +40,7 @@ def adiciona(request):
 
 def item(request, item_id):
 	item = get_object_or_404(Acc, id=item_id)
-	if request.method == 'POST':
-		form = FormAcc(request.POST, instance = item)
-		if form.is_valid():
-			form.save()
-			return render(request, 'salvo.html', {})
-		return render(request, 'item.html', {'form': form})
-	else:
-		form = FormAcc(instance=item)
-		return render(request, 'item.html', {'form': form})
+	return render(request, 'item.html', {'item': item})
 
 def delete(request, item_id):
 	item = get_object_or_404(Acc, id=item_id)

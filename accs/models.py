@@ -9,6 +9,9 @@ class Aluno(models.Model):
 	email = models.EmailField()
 	nome = models.CharField(max_length=255)
 
+	def __str__(self):
+		return self.nome
+
 class Acc(models.Model):
 	titulo = models.CharField(max_length=200)
 	aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
@@ -36,4 +39,5 @@ class Acc(models.Model):
 	codigo_de_publicacao_tipo = models.CharField(max_length=200, choices=codigo_de_publicacao_choices, default='ISSN')
 	codigo_de_publicacao = models.CharField(max_length=200)
 
-
+	def __str__(self):
+		return "Certificado do " + self.aluno.nome + " sobre " + self.titulo

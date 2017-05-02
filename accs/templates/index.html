@@ -5,15 +5,21 @@
 <form method="POST">
 	<p>
 		{% csrf_token %}
-		{{form.as_p}} 
-		<button type="submit">Pesquisar</button>
+		 
+		<table>
+			<thead>
+				<th>{{form.as_p}}</th>
+				<th><button type="submit">Pesquisar</button></th>
+			</thead>
+		</table>
+		
 	</p>
 </form>
 
 <ul>
 	{% for item in itens %}
 		<li>
-			Aluno(a): {{item.aluno.nome}} | Certificado: {{item.titulo}} | Matrícula: {{item.aluno.matricula}} 
+			<a href="/item/{{item.id}}">Aluno(a): {{item.aluno.nome}} | Certificado: {{item.titulo}} | Matrícula: {{item.aluno.matricula}}</a>
 		</li>
 	{% empty %}
 		<li>0 itens</li>

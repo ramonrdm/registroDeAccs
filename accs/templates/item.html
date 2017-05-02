@@ -1,5 +1,28 @@
-<form action="" method="POST">
-	{% csrf_token %}
-	{{form.as_p}}
-	<button type="submit">Atualizar</button>
-</form>
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Especificações da atividade</title>
+	</head>
+	<body>
+		<p>
+			Nome: {{item.aluno.nome}} </br>
+			Matrícula: {{item.aluno.matricula}} </br>
+			Email: {{item.aluno.email}} </br>
+			Título: {{item.titulo}} </br>
+			Carga horária: {{item.carga_horaria}} </br>
+			Instituição: {{item.instituicao}} </br>
+			Local: {{item.local}} </br>
+			Data do curso: {{item.data_do_curso}} </br>
+			Data de emissão: {{item.data_de_emissao}} </br>
+			Relatório: {{item.relatorio}} </br>
+			Arquivo anexado: {{item.arquivo_anexado}} </br>
+			Link externo: {{item.link_externo}} </br>
+			Usuário: {{item.usuario}} </br>
+			Tipo de atividade: {{item.tipo_atividade}} </br>
+			Tipo do código de publicação: {{item.codigo_de_publicacao_tipo}} </br>
+			Código de publicação: {{item.codigo_de_publicacao}} </br>
+		</p>
+	</body>
+</html>
+
