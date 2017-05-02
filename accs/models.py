@@ -7,37 +7,49 @@ from django.contrib.auth.models import User
 class Aluno(models.Model):
 	matricula = models.IntegerField()
 	email = models.EmailField()
-	nome = models.CharField(max_length=255)
+	nome = models.CharField(max_length=200)
 
 	def __str__(self):
 		return self.nome
 
 class Acc(models.Model):
 	titulo = models.CharField(max_length=200)
-	aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
-	carga_horaria = models.CharField(max_length=200)
+	aluno = models.ForeignKey(Aluno)
+	cargaHoraria = models.DecimalField(decimal_places=1, max_digits=200)
 	instituicao = models.CharField(max_length=200)
 	local = models.CharField(max_length=200)
-	data_do_curso = models.DateField()
-	data_de_emissao = models.DateField()
+	dataCurso = models.DateField()
+	dataEmissao = models.DateField()
 	relatorio = models.TextField()
-	arquivo_anexado = models.FileField(default=None, blank=True)
-	link_externo = models.CharField(max_length=200, blank=True)
+	anexo = models.FileField(default=None, blank=True)
+	linkExterno = models.CharField(max_length=200, blank=True)
 	usuario = models.ForeignKey(User,default = 1)
 
-	ensino_a_distancia = 'EaD'
-	tipo_atividade_choices = (
-		('EaD', 'Ensino a Distância'),
-		('PR', 'Presencial'),
+
+	tipoAtividadeChoices = (
+		('1a', 'Eventos - Participação'),
+		('1b', 'Eventos - Apresentação de trabalho'),
+		('1c', 'Eventos - Interpretação'),
+		('1d', 'Eventos - Organização'),
+		('2a', 'Defesas - Participação'),
+		('2b', 'Defesas - Interpretação'),
+		('3a', 'Pesquisa - Participação como pesquisador'),
+		('3b', 'Pesquisa - Participação como contribuidor de dados'),
+		('4a', 'Extensão - Participação em projetos'),
+		('4b', 'Extensão - Participação como aluno'),
+		('4b', 'Extensão - Participação como especialista'), #Conferir numero da atividade
+		('5a', 'Ensino - Monitoria em Letras-Libras'),
+		('5b', 'Ensino - Docência em Libras'),
+		('6a', 'Publicação - Resumos'),
+		('6b', 'Publicação - Artigos completos'),
+		('6b', 'Publicação - Material didático'), #Conferir numero da atividade
+		('7a', 'Atividades culturais - Participação'),
+		('7b', 'Atividades culturais - Atuação'),
 	)
-	tipo_atividade = models.CharField(max_length=200, choices=tipo_atividade_choices, default=ensino_a_distancia)
+	tipoAtividade = models.CharField(max_length=200, choices=tipoAtividadeChoices, default=tipoAtividadeChoices[0])
 	
-	codigo_de_publicacao_choices = (
-		('ISSN', 'ISSN'),
-		('ISBN', 'ISBN')
-	)
-	codigo_de_publicacao_tipo = models.CharField(max_length=200, choices=codigo_de_publicacao_choices, default='ISSN')
-	codigo_de_publicacao = models.CharField(max_length=200)
+	ISSN = models.IntegerField(blank=True)
+	ISBN = models.IntegerField(blank=True)
 
 	def __str__(self):
 		return "Certificado do " + self.aluno.nome + " sobre " + self.titulo
