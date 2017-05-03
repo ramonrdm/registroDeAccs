@@ -12,6 +12,5 @@ class AlunoAdmin(admin.ModelAdmin):
 	search_fields = ['nome']
 
 
-
 admin.site.register(Acc, AccAdmin)
 admin.site.register(Aluno, AlunoAdmin)
