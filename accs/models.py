@@ -54,6 +54,8 @@ class Acc(models.Model):
 	def clean(self):
 		if self.ISSN == None and self.ISBN == None:
 			raise ValidationError('ISSN ou ISBN devem ser preenchidos.')
+		if self.dataCurso > self.dataEmissao:
+			raise ValidationError('A data de emissão do certificado deve ser posterior a de início do curso.')
 
 	def __str__(self):
 		return "Certificado do " + self.aluno.nome + " sobre " + self.titulo
