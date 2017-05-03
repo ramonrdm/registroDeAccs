@@ -20,7 +20,7 @@ class Acc(models.Model):
 	local = models.CharField(max_length=200)
 	dataCurso = models.DateField()
 	dataEmissao = models.DateField()
-	relatorio = models.TextField()
+	relatorio = models.TextField(blank = True)
 	anexo = models.FileField(default=None, blank=True)
 	linkExterno = models.CharField(max_length=200, blank=True)
 	usuario = models.ForeignKey(User,default = 1)
@@ -48,8 +48,8 @@ class Acc(models.Model):
 	)
 	tipoAtividade = models.CharField(max_length=200, choices=tipoAtividadeChoices, default=tipoAtividadeChoices[0])
 	
-	ISSN = models.IntegerField(blank=True)
-	ISBN = models.IntegerField(blank=True)
+	ISSN = models.IntegerField(blank=True, null = True)
+	ISBN = models.IntegerField(blank=True, null = True)
 
 	def __str__(self):
 		return "Certificado do " + self.aluno.nome + " sobre " + self.titulo
