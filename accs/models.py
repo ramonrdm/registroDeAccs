@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 class Aluno(models.Model):
 	matricula = models.IntegerField()
@@ -50,6 +50,10 @@ class Acc(models.Model):
 	
 	ISSN = models.IntegerField(blank=True, null = True)
 	ISBN = models.IntegerField(blank=True, null = True)
+
+	def clean(self):
+		if self.ISSN == None and self.ISBN == None:
+			raise ValidationError('Preencha pelo menos algum dos dois campos')
 
 	def __str__(self):
 		return "Certificado do " + self.aluno.nome + " sobre " + self.titulo
