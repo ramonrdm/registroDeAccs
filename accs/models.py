@@ -53,7 +53,7 @@ class Acc(models.Model):
 
 	def clean(self):
 		if self.ISSN == None and self.ISBN == None:
-			raise ValidationError('Preencha pelo menos algum dos dois campos')
+			raise ValidationError('ISSN ou ISBN devem ser preenchidos.')
 
 	def __str__(self):
 		return "Certificado do " + self.aluno.nome + " sobre " + self.titulo
