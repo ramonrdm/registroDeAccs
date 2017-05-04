@@ -8,4 +8,4 @@ class FormAcc(ModelForm):
 		fields = "__all__"
 
 class FormSearch(forms.Form):
-	busca = forms.CharField(max_length=255)
+	busca = forms.CharField(max_length=200)
