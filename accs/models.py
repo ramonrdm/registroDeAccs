@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 
 class Aluno(models.Model):
 	matricula = models.IntegerField("Matrícula")
-	email = models.EmailField() #oi
+	email = models.EmailField() #Teste
 	nome = models.CharField(max_length=200)
 
 	def __str__(self):
