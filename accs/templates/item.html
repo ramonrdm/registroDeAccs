@@ -5,7 +5,7 @@
 		<title>Especificações da atividade</title>
 	</head>
 	<body>
-		<div>
+		<div id="um">
 				Nome: {{item.aluno.nome}}
 				Matrícula: {{item.aluno.matricula}}
 				Email: {{item.aluno.email}}
@@ -19,13 +19,24 @@
 				Arquivo anexado: {{item.anexo}}
 				Link externo: {{item.linkExterno}}
 				Usuário: {{item.usuario}}
-				Tipo de atividade: {{item.tipoAtividade}}
-				ISSN: {{item.ISSN}}
-				ISBN: {{item.ISBN}}
+				Tipo de atividade: {{item.tipoAtividade}} - {{item.get_tipoAtividade_display}}
+		</div>
+		<div id="dois">
+				{% if item.ISSN == None %}
+					ISSN:
+				{% else %}
+					ISSN: {{item.ISSN}}
+				{% endif %}
+		</div>
+		<div id="tres">
+				{% if item.ISBN == None %}
+					ISBN:
+				{% else %}
+					ISBN: {{item.ISBN}}
+				{% endif %}
 		</div>
 
 		<button onclick="window.history.back()">Voltar</button>
 
 	</body>
 </html>
-
