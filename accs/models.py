@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 class Aluno(models.Model):
-	matricula = models.IntegerField()
+	matricula = models.IntegerField("Matrícula")
 	email = models.EmailField()
 	nome = models.CharField(max_length=200)
 
@@ -13,17 +13,17 @@ class Aluno(models.Model):
 		return self.nome
 
 class Acc(models.Model):
-	titulo = models.CharField(max_length=200)
+	titulo = models.CharField("Título", max_length=200)
 	aluno = models.ForeignKey(Aluno)
-	cargaHoraria = models.DecimalField(decimal_places=1, max_digits=200)
-	instituicao = models.CharField(max_length=200)
+	cargaHoraria = models.DecimalField("Carga horária",decimal_places=1, max_digits=200)
+	instituicao = models.CharField("Instituição", max_length=200)
 	local = models.CharField(max_length=200)
-	dataCurso = models.DateField()
-	dataEmissao = models.DateField()
-	relatorio = models.TextField(blank = True)
+	dataCurso = models.DateField("Data do curso")
+	dataEmissao = models.DateField("Data de emissão")
+	relatorio = models.TextField("Relatório", blank = True)
 	anexo = models.FileField(default=None, blank=True)
-	linkExterno = models.CharField(max_length=200, blank=True)
-	usuario = models.ForeignKey(User,default = 1)
+	linkExterno = models.CharField("Link externo",max_length=200, blank=True)
+	usuario = models.ForeignKey(User,verbose_name="Usuário",default = 1)
 
 
 	tipoAtividadeChoices = (
