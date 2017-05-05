@@ -15,15 +15,16 @@
 		
 	</p>
 </form>
-
-<ul>
-	{% for item in itens %}
-		<li>
-			<a href="/item/{{item.id}}">Aluno(a): {{item.aluno.nome}} | Certificado: {{item.titulo}} | Matrícula: {{item.aluno.matricula}}</a>
-		</li>
-	{% empty %}
-		<li>0 itens</li>
-	{% endfor %}
-</ul>
+{% if post %}
+	<ul>
+		{% for item in itens %}
+			<li>
+				<a href="/item/{{item.id}}">Aluno(a): {{item.aluno.nome}} | Certificado: {{item.titulo}} | Matrícula: {{item.aluno.matricula}}</a>
+			</li>
+		{% empty %}
+			<li>0 itens</li>
+		{% endfor %}
+	</ul>
+{% endif %}
 
 
