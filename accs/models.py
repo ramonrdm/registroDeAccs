@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
 class Aluno(models.Model):
-	matricula = models.IntegerField("Matrícula")
-	email = models.EmailField()
+	matricula = models.IntegerField("Matrícula", unique=True)
+	email = models.EmailField("E-mail")
 	nome = models.CharField(max_length=200)
 
 	def __str__(self):
@@ -20,7 +20,7 @@ class Acc(models.Model):
 	local = models.CharField(max_length=200)
 	dataCurso = models.DateField("Data do curso")
 	dataEmissao = models.DateField("Data de emissão")
-	relatorio = models.TextField("Relatório", blank = True)
+	relatorio = models.TextField("Relatório", blank=True)
 	anexo = models.FileField(default=None, blank=True)
 	linkExterno = models.CharField("Link externo",max_length=200, blank=True)
 	usuario = models.ForeignKey(User,verbose_name="Usuário",default = 1)

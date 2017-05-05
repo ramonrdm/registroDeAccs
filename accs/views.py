@@ -8,14 +8,11 @@ from django.db.models import Q
 
 def index(request):
 	if request.method == 'POST':
-		post = True;
 		form = FormSearch(request.POST)
 		resultado = Acc.objects.filter(Q(aluno__nome__icontains=form.data['busca']) | Q(aluno__matricula__icontains=form.data['busca']))
-		return render(request, 'index.html', {"post":post,"itens":resultado,"form":FormSearch()})
+		return render(request, 'index.html', {"itens":resultado,"form":FormSearch()})
 	else:
-		post = False
-		resultado = []
-		return render(request, 'index.html', {"post":post,"itens":resultado,"form":FormSearch()})
+		return render(request, 'index.html', {"itens":[],"form":FormSearch()})
 
 def item(request, item_id):
 	item = get_object_or_404(Acc, id=item_id)
