@@ -1,2 +1,2 @@
 # registroDeAccs
-Sistema de cadastro de usuários e atividades complementares de curso vinculadas a estes.
+Manage and search students and complementary activities.
