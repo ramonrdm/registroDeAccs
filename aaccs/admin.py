@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.contrib import admin
-from models import Acc, Aluno
+from aaccs.models import AACC, Aluno
 
-class AccAdmin(admin.ModelAdmin):
+class AACCAdmin(admin.ModelAdmin):
 	search_fields = ['titulo']
+	autocomplete_fields = ['aluno']
 
 
 class AlunoAdmin(admin.ModelAdmin):
 	search_fields = ['nome']
 
 
-admin.site.register(Acc, AccAdmin)
+admin.site.register(AACC, AACCAdmin)
 admin.site.register(Aluno, AlunoAdmin)

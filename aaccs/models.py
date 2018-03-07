@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -12,9 +11,9 @@ class Aluno(models.Model):
 	def __str__(self):
 		return self.nome
 
-class Acc(models.Model):
+class AACC(models.Model):
 	titulo = models.CharField("Título", max_length=200)
-	aluno = models.ForeignKey(Aluno)
+	aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
 	cargaHoraria = models.DecimalField("Carga horária",decimal_places=1, max_digits=200)
 	instituicao = models.CharField("Instituição", max_length=200)
 	local = models.CharField(max_length=200)
@@ -23,7 +22,7 @@ class Acc(models.Model):
 	relatorio = models.TextField("Relatório", blank=True)
 	anexo = models.FileField(default=None, blank=True)
 	linkExterno = models.CharField("Link externo",max_length=200, blank=True)
-	usuario = models.ForeignKey(User,verbose_name="Usuário",default = 1)
+	usuario = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Usuário",default = 1)
 
 
 	tipoAtividadeChoices = (

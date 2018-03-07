@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from django import forms
-from models import Acc
+from aaccs.models import AACC
 from django.forms import ModelForm
 
-class FormAcc(ModelForm):
+class FormAACC(ModelForm):
 	class Meta:
-		model = Acc
+		model = AACC
 		fields = "__all__"
 
 class FormSearch(forms.Form):
